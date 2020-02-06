@@ -2,3 +2,48 @@
 {% load static %}
 {% block title %}Cargos{% endblock %}
 {% block pagina_actual %}Cargos de empleados{% endblock %}
+{% block main_content %}
+
+<p>
+    <a class="btn btn-sm btn-primary" href="{% url 'cargos_create' %}">Agregar Cargo <i class="fa fa-plus"></i></a>
+</p>
+<div class="table-responsive">
+    <table class="table table-info table-striped" width="100%" id="tableCargos">
+        <thead>
+            <tr>
+                <td>Codigo</td>
+                <td>Descripción</td>
+                <td>Fecha Creación</td>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+    </table>
+</div>
+{% endblock %}
+
+{% block js_extras %}
+    <script>
+    var dataTable = null;
+        $(document).ready(function(){
+            dataTable = $("#tableCargos").DataTable({
+                ajax: {
+                    url : "{% url 'cargos_list_json' %}",
+                    type: "GET",
+                    dataType: "JSON"
+                }, columns : [
+                    {'data': 'CodigoCargo'},
+                    {'data': 'Descripcion'},
+                    {'data': 'FechaCreacion'},
+                    {'data': 'id', render : function(i){
+                        var btn = "";
+                        btn += "<a class='btn btn-sm btn-warning'>Editar <i class='fa fa-edit'></i> </a> | ";
+                        btn += "<a class='btn btn-sm btn-info'>Detalles <i class='fa fa-info-circle'></i></a> | ";
+                        btn += "<a class='btn btn-sm btn-danger'>Eliminar <i class='fa fa-trash'></i></a>";
+                        return btn;
+                        }
+                    },
+                ]
+            });
+        })
+    </script>
+{% endblock %}

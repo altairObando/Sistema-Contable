@@ -282,3 +282,8 @@
     </div>
   </div>
 {% endblock %}
+{% block js_extras %}
+    <script src="{% static '/vendors/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static '/vendors/chartist/chartist.min.js' %}"></script>
+    <script src="{% static '/js/dashboard.js' %}"></script>
+{% endblock %}
