@@ -4,7 +4,7 @@ from Nomina.models import Cargo
 from Nomina.forms import CargosForm
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-PAGE_TITLE = "Cargos disponibles"
+PAGE_TITLE = "Cargos"
 
 
 def index(request):

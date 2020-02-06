@@ -43,6 +43,7 @@ function submitForm(form){
                });
                 dataTable.ajax.reload();
                 $("#modal-default").modal("hide");
+                $('[data-toggle="tooltip"]').tooltip();
             }
         });
     }else{
@@ -74,6 +75,7 @@ function deleteForm(url){
                        icon: icono
                    });
                     dataTable.ajax.reload();
+                    $('[data-toggle="tooltip"]').tooltip();
                }
            });
        }else{

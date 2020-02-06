@@ -69,7 +69,7 @@ class SalarioEmpleado(models.Model):
 class Cargo(models.Model):
     CodigoCargo = models.CharField(max_length=10, verbose_name="Código de cargo")
     Descripcion = models.CharField(max_length=50)
-    FechaCreacion = models.DateField(auto_created=True, verbose_name="Fecha de creacion")
+    FechaCreacion = models.DateField(auto_created=True, verbose_name="Fecha de creación")
 
     def __str__(self):
         return "%s %s" % (self.CodigoCargo, self.Descripcion)

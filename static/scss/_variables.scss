@@ -1,60 +1,76 @@
+// Override Bootstrap default variables here
+// Do not edit any of the files in /vendor/bootstrap/scss/!
 
-////////// SIDEBAR ////////
-$sidebar-width-lg: 240px;
-$sidebar-width-mini: 185px;
-$sidebar-width-icon: 70px;
+// Color Variables
+// Bootstrap Color Overrides
 
-$sidebar-light-bg: $white;
-$sidebar-light-menu-color: #3e4b5b;
-$sidebar-light-submenu-color: #888;
-$sidebar-light-menu-active-bg: $white;
-$sidebar-light-menu-active-color: theme-color(success);
-$sidebar-light-menu-hover-bg: darken($sidebar-light-bg, 1%);
-$sidebar-light-menu-hover-color: darken($sidebar-light-menu-color, 10%);
-$sidebar-light-submenu-hover-color: darken($sidebar-light-submenu-color, 20%);
-$sidebar-light-menu-icon-color: #626262;
-$sidebar-light-menu-arrow-color: #626262;
-$sidebar-light-menu-border-color: #f2edf3;
+$white: #fff !default;
+$gray-100: #f8f9fc !default;
+$gray-200: #eaecf4 !default;
+$gray-300: #dddfeb !default;
+$gray-400: #d1d3e2 !default;
+$gray-500: #b7b9cc !default;
+$gray-600: #858796 !default;
+$gray-700: #6e707e !default;
+$gray-800: #5a5c69 !default;
+$gray-900: #3a3b45 !default;
+$black: #000 !default;
 
-$sidebar-dark-bg: #181824;
-$sidebar-dark-menu-color: $white;
-$sidebar-dark-menu-active-bg: #282828;
-$sidebar-dark-menu-active-color: darken($white, 30%);
-$sidebar-dark-menu-hover-bg: lighten($sidebar-dark-bg, 10%);
-$sidebar-dark-menu-hover-color: color(white);
-$sidebar-dark-submenu-color: $sidebar-dark-menu-color;
-$sidebar-dark-submenu-hover-bg: initial;
-$sidebar-dark-submenu-hover-color: darken($sidebar-dark-submenu-color, 30%);
-$sidebar-dark-menu-icon-color: #626262;
-$sidebar-dark-menu-arrow-color: #626262;
+$blue: #4e73df !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #e74a3b !default;
+$orange: #fd7e14 !default;
+$yellow: #f6c23e !default;
+$green: #1cc88a !default;
+$teal: #20c9a6 !default;
+$cyan: #36b9cc !default;
 
-$sidebar-nav-category-color: theme-color(success);
-$sidebar-nav-category-padding: 1rem 0 1.125rem;
+// Custom Colors
+$brand-google: #ea4335;
+$brand-facebook: #3b5998;
 
-$sidebar-nav-link-border-color: rgba($white, 0.11);
+// Set Contrast Threshold
+$yiq-contrasted-threshold: 195 !default;
 
-$sidebar-menu-font-size: $default-font-size;
-$sidebar-menu-padding-y: 0.625rem;
-$sidebar-menu-padding-x: 1.75rem;
+// Typography
+$body-color: $gray-600 !default;
 
-$sidebar-submenu-font-size: .8125rem;
-$sidebar-submenu-item-padding: .75rem 2rem .75rem 2rem;
+$font-family-sans-serif: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 'Noto Color Emoji' !default;
 
-$sidebar-icon-font-size: 1.125rem;
-$sidebar-arrow-font-size: .625rem;
+$font-weight-light: 300 !default;
+// $font-weight-base: 400;
+$headings-font-weight: 400 !default;
 
-$sidebar-profile-bg: transparent;
-$sidebar-profile-padding: .75rem 1.625rem .75rem 1.188rem;
+// Shadows
+$box-shadow-sm: 0 0.125rem 0.25rem 0 rgba($gray-900, .2) !default;
+$box-shadow: 0 0.15rem 1.75rem 0 rgba($gray-900, .15) !default;
+// $box-shadow-lg: 0 1rem 3rem rgba($black, .175) !default;
 
-$sidebar-mini-menu-padding: .8125rem 1rem .8125rem 1rem;
+// Borders Radius
+$border-radius: 0.35rem !default;
+$border-color: darken($gray-200, 2%);
 
-$sidebar-icon-only-menu-padding: .5rem 1.625rem .5rem 1.188rem;
-$sidebar-icon-only-submenu-padding: 0 0 0 1.5rem;
+// Spacing Variables
+// Change below variable if the height of the navbar changes
+$topbar-base-height: 4.375rem;
+// Change below variable to change the width of the sidenav
+$sidebar-base-width: 14rem;
+// Change below variable to change the width of the sidenav when collapsed
+$sidebar-collapsed-width: 6.5rem;
 
-$rtl-sidebar-submenu-padding: 0 1.5rem 0 0;
+// Card
+$card-cap-bg: $gray-100;
+$card-border-color: $border-color;
 
-$icon-only-collapse-width: 190px;
-$icon-only-menu-bg-light: $sidebar-light-menu-hover-bg;
-$icon-only-menu-bg-dark: $sidebar-dark-menu-hover-bg;
+// Adjust column spacing for symmetry
+$spacer: 1rem;
+$grid-gutter-width: $spacer * 1.5;
 
-///////// SIDEBAR ////////
+// Transitions
+$transition-collapse: height .15s ease !default;
+
+// Dropdowns
+$dropdown-font-size: 0.85rem;
+$dropdown-border-color: $border-color;
