@@ -1,6 +1,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
-<form method="post" onsubmit="return submitForm(this)" action="{% url 'cargos_create' %}">
+<form method="post" onsubmit="return submitForm(this)" action="{{ cargos_edit_uri }}">
         {% csrf_token %}
         {% crispy form %}
 </form>

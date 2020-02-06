@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="{% static '/images/favicon.png' %}" />
     <link rel="stylesheet" href="{% static '/css/datatables.min.css' %}"/>
+    <link rel="stylesheet" href="{% static '/css/bootstrap-datepicker.min.css' %}"/>
 </head>
 <body>
     <div class="container-scroller">
@@ -33,12 +34,18 @@
             </div>
         </div>
     </div>
-    <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+    <script src="{% static '/vendors/js/vendor.bundle.base.js' %}"></script>
+    <script src="{% static '/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static '/js/jquery.validate.unobtrusive.min.js' %}"></script>
+    <script src="{% static '/js/ajaxCrud.js' %}"></script>
     <script src="{% static '/vendors/moment/moment.min.js' %}"></script>
     <script src="{% static '/vendors/daterangepicker/daterangepicker.js' %}"></script>
     <script src="{% static 'js/off-canvas.js' %}"></script>
     <script src="{% static 'js/misc.js' %}"></script>
     <script src="{% static 'js/datatables.min.js' %}"></script>
+    <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.es.min.js' %}"></script>
 
 {% block js_extras %}{% endblock %}
 

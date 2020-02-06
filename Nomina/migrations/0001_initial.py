@@ -97,4 +97,5 @@ class Migration(migrations.Migration):
                 ('TipoMovimiento', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Nomina.TipoMovimiento', verbose_name='Tipo de movimiento')),
             ],
         ),
+        
     ]

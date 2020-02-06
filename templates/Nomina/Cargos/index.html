@@ -5,10 +5,10 @@
 {% block main_content %}
 
 <p>
-    <a class="btn btn-sm btn-primary" href="{% url 'cargos_create' %}">Agregar Cargo <i class="fa fa-plus"></i></a>
+    <a class="btn btn-sm btn-primary" onclick=loadForm("{% url 'cargos_create' %}",'Agregar&nbspCargo')>Agregar Cargo <i class="fa fa-plus"></i></a>
 </p>
 <div class="table-responsive">
-    <table class="table table-info table-striped" width="100%" id="tableCargos">
+    <table class="table table-dark table-striped" width="100%" id="tableCargos">
         <thead>
             <tr>
                 <td>Codigo</td>
@@ -19,11 +19,13 @@
         </thead>
     </table>
 </div>
+
+    {% include '_modal.html' with titulo_modal='Cargos' %}
 {% endblock %}
 
 {% block js_extras %}
     <script>
-    var dataTable = null;
+        let dataTable = null;
         $(document).ready(function(){
             dataTable = $("#tableCargos").DataTable({
                 ajax: {
@@ -35,15 +37,27 @@
                     {'data': 'Descripcion'},
                     {'data': 'FechaCreacion'},
                     {'data': 'id', render : function(i){
-                        var btn = "";
-                        btn += "<a class='btn btn-sm btn-warning'>Editar <i class='fa fa-edit'></i> </a> | ";
-                        btn += "<a class='btn btn-sm btn-info'>Detalles <i class='fa fa-info-circle'></i></a> | ";
-                        btn += "<a class='btn btn-sm btn-danger'>Eliminar <i class='fa fa-trash'></i></a>";
-                        return btn;
+                            let btn = "";
+                            let editUri = '{% url 'cargos_edit' 1234 %}'.replace('1234', i);
+                            let deleteUri = '{% url 'cargos_delete' 1234 %}'.replace('1234', i);
+                            let detailsUri = '{% url 'cargos_details' 1234 %}'.replace('1234', i);
+                            btn += "<a href='#' class='text-white' onclick=loadForm('" + editUri+"','Editar&nbspCargo')> Editar <i class='fa fa-edit'></i> </a> | ";
+                            btn += "<a href='#' class='text-white' onclick=loadForm('"+ detailsUri +"','Detalles&nbspdel&nbspcargo')>Detalles <i class='fa fa-info-circle'></i></a> | ";
+                            btn += "<a href='#' class='text-white' onclick=deleteForm('"+deleteUri+"')>Eliminar <i class='fa fa-trash'></i></a>";
+                            return btn;
                         }
                     },
                 ]
             });
-        })
+        });
+        // Ajustar el datepicker para los campos de fecha
+        $("#modal-default").on('shown.bs.modal', function(e){
+       $('#id_FechaCreacion').datepicker({
+        format: "dd/mm/yyyy",
+        maxViewMode: 3,
+        todayBtn: "linked",
+        language: "es"
+        });
+    });
     </script>
 {% endblock %}
