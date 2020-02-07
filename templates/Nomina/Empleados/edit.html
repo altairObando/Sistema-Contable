@@ -1,0 +1,6 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<form method="post" onsubmit="return submitForm(this)" action="{{ form_url }}">
+        {% csrf_token %}
+        {% crispy form %}
+</form>

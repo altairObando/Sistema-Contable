@@ -27,9 +27,9 @@ class Empleado(models.Model):
         ("8", "Doctorado"),
 
     ]
-    Cedula = models.CharField(max_length=15, verbose_name="Número de cédula")
-    NoInss = models.IntegerField(verbose_name="Número de INSS")
-    CuentaBanco = models.IntegerField(verbose_name="Número de cuenta bancaria", blank=True, null=True)
+    Cedula = models.CharField(max_length=16, verbose_name="Número de cédula")
+    NoInss = models.IntegerField(verbose_name="Número de INSS", blank=True, null=True, default=0)
+    CuentaBanco = models.IntegerField(verbose_name="Cuenta bancaria", blank=True, null=True, default=0)
     Nombres = models.CharField(max_length=30)
     PrimerApellido = models.CharField(max_length=30, verbose_name="Primer apellido")
     SegundoApellido = models.CharField(max_length=25, verbose_name="Segundo apellido", blank=True, null=True)
@@ -37,10 +37,10 @@ class Empleado(models.Model):
     EstadoCivil = models.CharField(max_length=1, choices=ESTADO_CIVIL)
     Email = models.EmailField(verbose_name="Correo Electrónico")
     Estado = models.BooleanField(verbose_name="Activo en el sistema", default=True)
-    Direccion = models.TextField()
-    TipoEmpleado = models.CharField(max_length=50)
-    GradoAcademico = models.CharField(max_length=1, choices=GRADO_ACADEMICO)
-    Observaciones = models.TextField(blank=True)
+    Direccion = models.CharField(max_length=50)
+    TipoEmpleado = models.CharField(max_length=50, verbose_name="Tipo de Empleado")
+    GradoAcademico = models.CharField(max_length=1, choices=GRADO_ACADEMICO, verbose_name="Grado Academico")
+    Observaciones = models.CharField(blank=True, max_length=50)
 
     def __str__(self):
         return "%s %s %s" % (self.Cedula, self.Nombres, self.PrimerApellido)

@@ -1,0 +1,31 @@
+<div class="col-md-12">
+    <h4>Empleado: {{ data.Nombres }} {{ data.PrimerApellido }}</h4>
+    <hr/>
+    <dl class="horizontal">
+        <dt>Cedula</dt>
+        <dd>{{ data.Cedula }}</dd>
+        <dt>No. Inss </dt>
+        <dd>{% if data.NoInss > 0 %}
+                {{ NoInss }}
+            {% else %}
+                No Aplica
+            {% endif %}
+        </dd>
+        <dt>Cuenta Bancaria</dt>
+        <dd>{% if data.CuentaBanco %}{{ data.CuentaBanco }}{% else %} - {% endif %}</dd>
+        <dt>Grado Academico</dt>
+        <dd>{{ data.get_GradoAcademico_display }}</dd>
+        <dt>Nombre Completo</dt>
+        <dd>{{ data.Nombres }} {{ data.PrimerApellido }} {% if data.SegundoApellido %}{{ data.SegundoApellido }}{% endif %}</dd>
+        <dt>Sexo</dt>
+        <dd>{{ data.get_Sexo_display }}</dd>
+        <dt>Estado Civil</dt>
+        <dd>{{ data.get_EstadoCivil_display }}</dd>
+        <dt>Email</dt>
+        <dd>{{ data.Email }}</dd>
+        <dt>Direccion</dt>
+        <dd>{{ data.Direccion }}</dd>
+        <dt>Observaciones</dt>
+        <dd>{{ data.Observaciones }}</dd>
+    </dl>
+</div>

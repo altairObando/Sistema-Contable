@@ -1,0 +1,6 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<form method="post" onsubmit="return submitForm(this)" action="{% url 'create_empleados' %}">
+        {% csrf_token %}
+        {% crispy form %}
+</form>

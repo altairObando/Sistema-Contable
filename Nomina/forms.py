@@ -1,6 +1,6 @@
-from Nomina.models import Cargo
+from Nomina.models import Cargo, Empleado
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
 
@@ -41,4 +41,42 @@ class CargosForm(ModelForm):
                 css_class="form-row"
             ), 'Descripcion',
             Submit('submit', 'Guardar cargo')
+        )
+
+
+class EmpleadosForm(ModelForm):
+    class Meta:
+        model = Empleado
+        fields = "__all__"
+        widgets: {
+            'Direccion': Textarea(attrs={'rows': 3, 'cols': 10}),
+            'Observaciones': Textarea(attrs={'rows': 3, 'cols': 10}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column('Cedula', css_class='form-group col-md-4 mb-0'),
+                Column('NoInss', css_class='form-group col-md-4 mb-0'),
+                Column('CuentaBanco', css_class='form-group col-md-4 mb-0'),
+            ),
+            Row(
+                Column('Nombres', css_class='form-group col-md-6 mb-0'),
+                Column('PrimerApellido', css_class='form-group col-md-6 mb-0'),
+            ),
+            Row(
+                Column('SegundoApellido', css_class='form-group col-md-6 mb-0'),
+                Column('Email', css_class='form-group col-md-6 mb-0'),
+            ),
+            Row(
+                Column('Sexo', css_class='form-group col-md-6 mb-0'),
+                Column('EstadoCivil', css_class='form-group col-md-6 mb-0'),
+            ),
+            Row(
+                Column('GradoAcademico', css_class='form-group col-md-6 mb-0'),
+                Column('TipoEmpleado', css_class='form-group col-md-6 mb-0'),
+            ), 'Direccion', 'Observaciones',
+            Submit('submit', 'Guardar Empleado', css_class='btn btn-sm btn-success')
         )

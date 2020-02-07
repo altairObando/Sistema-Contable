@@ -41,11 +41,22 @@ function submitForm(form){
                    text: result.mensaje,
                    icon: icono
                });
-                dataTable.ajax.reload();
-                $("#modal-default").modal("hide");
-                $('[data-toggle="tooltip"]').tooltip();
+            },
+            statusCode: {
+               403: function(xhr){
+                   swal.fire({
+                       title: "Error 403",
+                       message: "ACCESO PROHIBIDO",
+                       icon: "error"
+                   })
+               }
             }
         });
+        dataTable.ajax.reload();
+                $("#modal-default").modal("hide");
+                setTimeout(function(){
+                    $('[data-toggle="tooltip"]').tooltip();
+                }, 1500);
     }else{
         return false;
     }
