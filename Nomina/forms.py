@@ -1,9 +1,9 @@
-from Nomina.models import Cargo, Empleado
+from Nomina.models import Cargo, Empleado, FotosEmpleado
 from django import forms
 from django.forms import ModelForm, Textarea
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
-
+from datetime import datetime
 
 class DateInput(forms.DateInput):
     input_type = "date"
@@ -80,3 +80,18 @@ class EmpleadosForm(ModelForm):
             ), 'Direccion', 'Observaciones',
             Submit('submit', 'Guardar Empleado', css_class='btn btn-sm btn-success')
         )
+
+
+class EmpleadoFotoForm(ModelForm):
+    class Meta:
+        model = FotosEmpleado
+        fields = ['Foto']
+        widgets: {
+            'Foto': forms.ImageField()
+        }
+
+    def save(self, commit=True):
+        self.Fecha = datetime.now()
+        self.Activa = True
+        self.save()
+

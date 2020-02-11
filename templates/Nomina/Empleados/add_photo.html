@@ -1,0 +1,22 @@
+{% load static %}
+<h4>Actualizar foto de: {{ data.Nombres }}</h4>
+<div class="form form-vertical" action="{{form_uri}}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-md-4 offset-4">
+        <img src="{% static 'img/up.png' %}">
+        <input id="id_Foto" name="id_Foto" type="file" required onchange="Vi">
+        <input id="id_Empleado" type="text" hidden value="{{ data.id }}">
+        <button type="submit" class="btn btn-sm btn-success">Guardar Foto</button>
+    </div>
+
+</div>
+
+{% block js_extras %}
+    <style>
+
+    </style>
+    <script>
+    $("#modal-default").on("shown.bs.modal", function(){
+    });
+    </script>
+{% endblock %}

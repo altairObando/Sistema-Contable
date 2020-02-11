@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from Nomina.models import Empleado
-from Nomina.forms import EmpleadosForm
+from Nomina.forms import EmpleadosForm, EmpleadoFotoForm
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -62,3 +62,19 @@ def eliminar(request, id_empleado):
         empleado.save()
         return JsonResponse(data={"Guardado": True, 'message': "Empleado eliminado"})
     return JsonResponse(data={"Guardado": False, 'message': "Metodo no admitido"})
+
+
+def agregar_foto(request, id_empleado):
+    if request.method == "POST":
+        form = EmpleadoFotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.Empleado = Empleado.objects.get(pk=id_empleado)
+            instance.save()
+            return JsonResponse(data={"Guardado": True, 'message': "Foto de empleado guardada"})
+        else:
+            return JsonResponse(data={"Guardado": False, 'message': "No se ha cargado la foto del empleado"})
+    else:
+        empleado = Empleado.objects.get(pk=id_empleado)
+        form = EmpleadoFotoForm()
+        return render(request, 'Nomina/Empleados/add_photo.html', {'data': empleado, form: 'form', 'form_uri': reverse('add_photo_empleados', args=(id_empleado,))})

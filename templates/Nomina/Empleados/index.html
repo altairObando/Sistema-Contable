@@ -46,8 +46,11 @@
                             let editUri = '{% url 'edit_empleados' 1234 %}'.replace('1234', i);
                             let deleteUri = '{% url 'delete_empleados' 1234 %}'.replace('1234', i);
                             let detailsUri = '{% url 'details_empleados' 1234 %}'.replace('1234', i);
-                            btn += "<a href='#' data-toggle='tooltip' data-placement='top' title='Editar' class='btn btn-warning btn-circle' onclick=loadForm('" + editUri+"','Editar&nbspEmpleado')>  <i class='fa fa-edit'></i> </a> | ";
+                            let addPhoto = '{% url 'add_photo_empleados' 1234 %}'.replace('1234', i);
+
+                            btn += "<a href='#' data-toggle='tooltip' data-placement='top' title='Foto' class='btn btn-info btn-circle' onclick=loadForm('" + addPhoto+"','Foto')>  <i class='fa fa-portrait'></i> </a> | ";
                             btn += "<a href='#' data-toggle='tooltip' data-placement='top' title='Detalles' class='btn btn-info btn-circle' onclick=loadForm('"+ detailsUri +"','Detalles')><i class='fa fa-info-circle'></i></a> | ";
+                            btn += "<a href='#' data-toggle='tooltip' data-placement='top' title='Editar' class='btn btn-warning btn-circle' onclick=loadForm('" + editUri+"','Editar&nbspEmpleado')>  <i class='fa fa-edit'></i> </a> | ";
                             btn += "<a href='#' data-toggle='tooltip' data-placement='top' title='Eliminar' class='btn btn-danger btn-circle' onclick=deleteForm('"+deleteUri+"')><i class='fa fa-trash'></i></a>";
                             btn += "</div>";
                             return btn;
