@@ -1,10 +1,10 @@
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
-from Nomina.models import Empleado
+from Nomina.models import Empleado, Cargo,  FotosEmpleado, EmpleadoCargo
 from Nomina.forms import EmpleadosForm, EmpleadoFotoForm
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-
+from datetime import datetime
 PAGE_TITLE = "Empleados"
 
 
@@ -68,13 +68,43 @@ def agregar_foto(request, id_empleado):
     if request.method == "POST":
         form = EmpleadoFotoForm(request.POST, request.FILES)
         if form.is_valid():
-            instance = form.save(commit=False)
-            instance.Empleado = Empleado.objects.get(pk=id_empleado)
-            instance.save()
+            FotosEmpleado.objects.filter(Empleado_id=id_empleado).update(Activa=False)
+            foto = form.files["id_Foto"]
+            emp = Empleado.objects.get(pk=id_empleado)
+            data = FotosEmpleado()
+            data.Foto = foto
+            data.Empleado = emp
+            data.Empleado_id = id_empleado
+            data.Fecha = datetime.now()
+            data.Activa = True
+            data.save()
             return JsonResponse(data={"Guardado": True, 'message': "Foto de empleado guardada"})
         else:
             return JsonResponse(data={"Guardado": False, 'message': "No se ha cargado la foto del empleado"})
     else:
         empleado = Empleado.objects.get(pk=id_empleado)
+        actual = list(FotosEmpleado.objects.filter(Empleado__id=id_empleado, Activa=True))
+        if len(actual) == 0:
+            actual = None
+        else:
+            actual = actual[0]
         form = EmpleadoFotoForm()
-        return render(request, 'Nomina/Empleados/add_photo.html', {'data': empleado, form: 'form', 'form_uri': reverse('add_photo_empleados', args=(id_empleado,))})
+        return render(request, 'Nomina/Empleados/add_photo.html', {
+            'data': empleado,
+            'form': form,
+            'form_uri': reverse('add_photo_empleados', args=(id_empleado,)),
+            'fotoActual': actual
+        })
+
+def asignar_cargo(request, id_empleado):
+    if request.method == "POST":
+        id_cargo = request["id_cargo"]
+        emp = EmpleadoCargo()
+        emp.Cargo_id = id_cargo
+        emp.Empleado_id = id_empleado
+        emp.save()
+        return JsonResponse(data={"Guardado": True, 'message': "Cargo Actualizado"})
+    else:
+        cargos = Cargo.objects.all()
+        return render(request,'Nomina/Empleados/add_cargo.html', {'cargos': cargos})
+

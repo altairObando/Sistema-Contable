@@ -82,16 +82,8 @@ class EmpleadosForm(ModelForm):
         )
 
 
-class EmpleadoFotoForm(ModelForm):
-    class Meta:
-        model = FotosEmpleado
-        fields = ['Foto']
-        widgets: {
-            'Foto': forms.ImageField()
-        }
+class EmpleadoFotoForm(forms.Form):
+    id_Empleado = forms.HiddenInput()
+    id_Foto = forms.FileInput()
 
-    def save(self, commit=True):
-        self.Fecha = datetime.now()
-        self.Activa = True
-        self.save()
 
